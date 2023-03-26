@@ -15,6 +15,7 @@ SOURCES += \
     mainwindow.cpp
 
 HEADERS += \
+    MyThread.h \
     mainwindow.h
 
 FORMS += \

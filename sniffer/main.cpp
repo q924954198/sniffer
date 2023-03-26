@@ -1,43 +1,28 @@
 #include "mainwindow.h"
+#include "ui_mainwindow.h"
 
+#include <QtDebug>
 #include <QApplication>
 #include <QLocale>
+#include <QComboBox>
 #include <QTranslator>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <pcap/pcap.h>
+#include <time.h>
+#include <typeinfo>
+#include <linux/ip.h>
+#include <linux/tcp.h>
+#include <qthread.h>
 
 using namespace std;
 
-int pcap_analyse(){
-    char buf[100];
-    pcap_if_t *alldev;
-    pcap_findalldevs(&alldev,buf);
-    for(pcap_if_t *pdev=alldev;pdev;pdev=pdev->next){
-        printf("%s\n",pdev->name);
-    }
-    return 0;
-}
 
-/*int pcap_analyse()
-{
-    char *dev, errbuf[PCAP_ERRBUF_SIZE];
 
-    dev = pcap_lookupdev(errbuf);
-    if(dev == NULL)
-    {
-        fprintf(stderr, "Couldn't find default device: %s\n", errbuf);
-        return(2);
-    }
-
-    printf("Device %s\n", dev);
-    return(0);
-}*/
 
 int main(int argc, char *argv[])
 {
-    pcap_analyse();
     QApplication a(argc, argv);
 
     QTranslator translator;
@@ -51,5 +36,8 @@ int main(int argc, char *argv[])
     }
     MainWindow w;
     w.show();
+
+
+
     return a.exec();
 }
